@@ -10,6 +10,13 @@
 * 记忆系统：短期记忆采用滑动窗口结合大模型摘要压缩技术，长期记忆支持自动静默提取并持久化用户的关键偏好与重要事实。
 * 向量引擎：纯基于 Numpy 构建的高维向量数据库，支持余弦相似度计算与本地数据持久化。
 
+## 实际运行截图
+
+| | |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/23449fdd-1c59-4b66-bc2b-6aaadc67a9ed" width="100%" /> | <img src="https://github.com/user-attachments/assets/426daa9a-8710-44a3-81ed-317a707edb0f" width="100%" /> |
+| <img src="https://github.com/user-attachments/assets/a802d367-4a4c-4931-adb4-eff0d7f5aa08" width="100%" /> | <img src="https://github.com/user-attachments/assets/e400875a-81f7-4077-939b-4ff9e8257b2f" width="100%" /> |
+
 ---
 
 ## 运行方式
@@ -102,6 +109,9 @@ python main.py
 ═══════════════════════════════════════════════════
 🤖 Agent > Transformer 的自注意力机制……（详细回答）
 ```
+
+
+
 
 ---
 
