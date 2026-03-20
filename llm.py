@@ -25,13 +25,16 @@ class LLM:
     ) -> str:
         """调用 LLM 进行对话，返回纯文本回复。"""
         try:
-            resp = self.client.chat.completions.create(
-                model=self.chat_model,
-                messages=messages,
-                temperature=temperature,
-                stop=stop,
-                max_tokens=max_tokens,
-            )
+            request_args = {
+                "model": self.chat_model,
+                "messages": messages,
+                "temperature": temperature,
+                "max_tokens": max_tokens,
+            }
+            if stop is not None:
+                request_args["stop"] = stop
+
+            resp = self.client.chat.completions.create(**request_args)
             return resp.choices[0].message.content or ""
         except openai.APIError as e:
             raise RuntimeError(f"LLM API 调用失败: {e}") from e
@@ -53,5 +56,12 @@ class LLM:
             model=self.embedding_model,
             input=texts,
         )
-        # 按输入顺序排列
-        return [d.embedding for d in sorted(resp.data, key=lambda x: x.index)]
+        # 某些 OpenAI 兼容接口可能返回 None index；此时按响应顺序回退
+        ordered = sorted(
+            enumerate(resp.data),
+            key=lambda item: (
+                item[1].index is None,
+                item[1].index if item[1].index is not None else item[0],
+            ),
+        )
+        return [item.embedding for _, item in ordered]

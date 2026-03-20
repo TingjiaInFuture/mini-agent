@@ -132,7 +132,7 @@ class WebSearchTool(Tool):
     def run(self, input_str: str) -> str:
         query = input_str.strip().strip("\"'")
         try:
-            from duckduckgo_search import DDGS
+            from ddgs import DDGS
 
             with DDGS() as ddgs:
                 results = list(ddgs.text(query, max_results=3))
@@ -143,7 +143,7 @@ class WebSearchTool(Tool):
                 lines.append(f"{i}. {r['title']}\n   {r['body']}")
             return "\n\n".join(lines)
         except ImportError:
-            return "错误: 未安装 duckduckgo-search，请运行 pip install duckduckgo-search"
+            return "错误: 未安装 ddgs，请运行 pip install ddgs"
         except Exception as e:
             return f"搜索出错: {e}"
 

@@ -16,16 +16,17 @@
 
 ```bash
 # 1. 安装依赖
-pip install openai numpy duckduckgo-search
+pip install openai numpy ddgs
 
 # 2. 设置 API Key（二选一）
 #    方式 A：OpenAI
 export OPENAI_API_KEY="sk-xxxxx"
 
-#    方式 B：兼容 API（如 DeepSeek）
-export OPENAI_API_KEY="sk-xxxxx"
-export OPENAI_BASE_URL="https://api.deepseek.com/v1"
-export CHAT_MODEL="deepseek-chat"
+#    方式 B：兼容 API（如 Gemini）
+export OPENAI_API_KEY="GEMINI_API_KEY"
+export OPENAI_BASE_URL="https://generativelanguage.googleapis.com/v1beta/openai/"
+export CHAT_MODEL="gemini-3.1-flash-lite-preview"
+export EMBEDDING_MODEL="gemini-embedding-2-preview"
 
 # 3. 启动
 python main.py
